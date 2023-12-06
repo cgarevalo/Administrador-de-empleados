@@ -1,0 +1,6 @@
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\bin\Debug\Dominio.dll
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\bin\Debug\Dominio.pdb
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\obj\Debug\Dominio.dll
+A:\Archivos\Cristian\Repositorios de github\Administrador de empleados\Administrador de empleados\Dominio\obj\Debug\Dominio.pdb
