@@ -11,7 +11,10 @@ namespace Dominio
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int DNI { get; set; }
         public string Cargo { get; set; }
+        public string UrlImagen { get; set; }
         [DisplayName("Fecha de ingreso")]
         public DateTime FechaRegistro { get; set; }
 

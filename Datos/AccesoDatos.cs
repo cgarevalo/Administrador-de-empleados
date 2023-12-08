@@ -21,10 +21,7 @@ namespace Datos
 
             try
             {
-                if (!Directory.Exists(carpetaAppDataLocal))
-                {
-                    Directory.CreateDirectory(carpetaAppDataLocal);
-                }
+                VerificarDirectorio();
 
                 if (File.Exists(RutaArchivo))
                 {
@@ -45,10 +42,7 @@ namespace Datos
 
             try
             {
-                if (!Directory.Exists(carpetaAppDataLocal))
-                {
-                    Directory.CreateDirectory(carpetaAppDataLocal);
-                }
+                VerificarDirectorio();
 
                 if (File.Exists(RutaArchivo))
                 {
@@ -66,6 +60,14 @@ namespace Datos
             catch (Exception ex)
             {
                 throw new Exception ("Error al deserializar: " + ex.Message, ex);
+            }
+        }
+
+        private void VerificarDirectorio()
+        {
+            if (!Directory.Exists(carpetaAppDataLocal))
+            {
+                Directory.CreateDirectory(carpetaAppDataLocal);
             }
         }
     }

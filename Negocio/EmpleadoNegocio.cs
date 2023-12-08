@@ -48,5 +48,47 @@ namespace Negocio
         {
             return datos.Deserializar();
         }
+
+        public void Modificar(Empleado empleado)
+        {
+            try
+            {
+                listaEmp = CargarDatos();
+                Empleado empleadoExistente = listaEmp.Find(e => e.ID == empleado.ID);
+                if (empleadoExistente != null)
+                {
+                    empleadoExistente.Nombre = empleado.Nombre;
+                    empleadoExistente.Apellido = empleado.Apellido;
+                    empleadoExistente.DNI = empleado.DNI;
+                    empleadoExistente.Cargo = empleado.Cargo;
+                    empleadoExistente.UrlImagen = empleado.UrlImagen;
+
+                    datos.Serializar(listaEmp);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception ("Error al modificar: " + ex.Message, ex);
+            }
+            
+        }
+
+        public void Eliminar(Empleado empleado)
+        {
+            try
+            {
+                listaEmp = CargarDatos();
+                Empleado empleadoExistente = listaEmp.Find(e => e.ID == empleado.ID);
+                if (empleadoExistente != null)
+                {
+                    listaEmp.Remove(empleadoExistente);
+                    datos.Serializar(listaEmp);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar: " + ex.Message, ex);
+            }
+        }
     }
 }

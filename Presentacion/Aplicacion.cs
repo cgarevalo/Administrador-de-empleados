@@ -37,6 +37,7 @@ namespace Presentacion
                 dgvEmpleados.DataSource = null;
                 dgvEmpleados.DataSource = listaEmpleados;
                 dgvEmpleados.Refresh();
+                OcultarColumnas();
             }
             catch (Exception ex)
             {
@@ -44,22 +45,69 @@ namespace Presentacion
             }
         }
 
+        private void OcultarColumnas()
+        {
+            dgvEmpleados.Columns["DNI"].Visible = false;
+            dgvEmpleados.Columns["UrlImagen"].Visible = false;
+            dgvEmpleados.Columns["FechaRegistro"].Visible = false;
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtCargo.Text != "")
-            {
-                empleado.Nombre = txtNombre.Text;
-                empleado.Cargo = txtCargo.Text;
-                negocio.GuardarDatos(empleado);
-                MessageBox.Show("Empleado agregado.");
-                txtNombre.Text = "";
-                txtCargo.Text = "";
+            frmAltaEmpleado alta = new frmAltaEmpleado();
+            alta.ShowDialog();
+            Refrescar();
 
+            
+        }
+
+        private void btnVerEmpleado_Click(object sender, EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count > 0 && dgvEmpleados.SelectedRows != null)
+            {
+                Empleado seleccionado = (Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
+                frmDetallesEmpleado detalles = new frmDetallesEmpleado(seleccionado);
+                detalles.ShowDialog();
                 Refrescar();
             }
             else
             {
-                MessageBox.Show("Por favor, rellene los campos antes de agregar.");
+                MessageBox.Show("Seleccione un empleado.");
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count > 0 && dgvEmpleados.SelectedRows != null)
+            {
+                Empleado seleccionado = (Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
+                frmModificar modificar = new frmModificar(seleccionado);
+                modificar.ShowDialog();
+                Refrescar();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un empleado para modificar");
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count > 0)
+            {
+                Empleado empleadoSeleccionado = (Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
+
+                DialogResult pregunta = MessageBox.Show("¿Desea eliminar este registro?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (pregunta == DialogResult.Yes)
+                {
+                    negocio.Eliminar(empleadoSeleccionado);
+                    Refrescar();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un empleado para eliminar.");
             }
         }
     }
